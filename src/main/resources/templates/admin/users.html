@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="users-cont" th:fragment="content">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+	
+		<div class="search-area">
+			<div class="search-bar">
+				<div class="search-img"><img src="/images/search.png"></div>
+            	<div class="search-ment"><input type="text" id="searchWord" placeholder="스터디를 검색해보세요."/></div>
+			</div>
+			<button id="searchBt">검색</button>
+		</div>
+		
+		
+		<div id="users-cont-wrapper">
+			<div class="users-cont-item" th:each="member : ${members}">
+				<div class="userNo" th:text="${member.memberNo}"></div>
+				<div class="userId" th:text="${member.memberId}"></div>
+				<div class="userNickname" th:text="${member.memberNickname}"></div>
+				<div class="joinDate" th:text="${member.joinDate}"></div>
+				<div class="userStatus" th:text="${member.memberStatus}"></div>
+				<div class="userRole" th:text="${member.memberRole}"></div>
+				<div class="management" th:attr="data-id=${member.memberNo}">
+					<div class="user-detail">상세</div>
+					<div>&nbsp;|&nbsp;</div>
+					<div class="user-delete" th:if="${member.memberStatus?.name() == 'ACTIVE'}">삭제</div>
+					<div class="user-restore" th:if="${member.memberStatus?.name() == 'STOP'}">복구</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="pagination">
+          	<button th:if="${currentGroupStart > 0}" th:onclick="'loadMemberPage(\'users\', ' + (currentGroupStart - 1) + ')'">
+          		Prev
+          	</button>
+          	<span th:each="i : ${#numbers.sequence(currentGroupStart, currentGroupEnd)}">
+          		<button th:classappend="${i} == ${currentPage} ? ' active'" 
+          				th:onclick="|loadMemberPage('users',${i})|" th:text="${i + 1}"></button>
+          	</span>
+          	<button th:if="${currentGroupEnd < totPages - 1}" th:onclick="'loadMemberPage(\'users\', ' + (currentGroupEnd + 1) + ')'" >
+          		Next
+          	</button>
+          </div>
+	</div>
+</body>
+</html>

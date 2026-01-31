@@ -1,0 +1,311 @@
+main{
+    margin: 0 auto;
+    width: 1200px;
+}
+
+.go-prev {
+	margin-top: 40px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.post-detail{
+	margin-top: 30px;
+	margin-bottom: 50px;
+}
+
+#title-edit, #cont-edit {
+	position: absolute;
+	top: 0;
+	left: 0;
+	box-sizing: border-box;
+	display: none;
+	color: #717171;
+}
+
+#recruitment-edit, #position-edit {
+	position: absolute;
+	top: 0;
+	left: 120px;
+	box-sizing: border-box;
+	height: 30px;
+	color: #717171;
+	display: none;
+}
+
+.recruitment {
+	position: relative;
+}
+
+.position {
+	position: relative;
+}
+
+.post-title {
+	width: 100%;
+    font-size: 42px;
+    font-weight: 800;
+    height: 70px;
+    box-sizing: border-box;
+}
+
+.writer-info {
+	display: flex;
+	gap: 20px;
+	height: 40px;
+	font-size: 20px;
+	align-items: center;
+}
+
+hr {
+	border: none;
+	background-color: #F2F2F2;
+	height: 4px;
+	margin-top: 30px;
+	margin-bottom: 50px;
+	
+}
+
+.writer-info span {
+	color: #717171;
+}
+
+.post-writer{
+	font-weight: 500;
+}
+
+.separate {
+	color: #e2e2e2;
+}
+
+.post-date {
+	font-size: 18px;
+	color: #717171;
+}
+
+.post-view {
+	color: #717171;
+	font-size: 18px;
+}
+
+.info-list {
+	display: grid;
+	grid-template-columns: repeat(2, 3fr);
+	row-gap: 24px;
+}
+
+.info-list li {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	list-style: none;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.li-title {
+	width: 120px;
+	color: #717171;
+	margin-right: 36px;
+}
+
+.li-cont {
+	color: #333;
+}
+
+.cont-area{
+	margin-top: 130px;
+
+}
+
+.cont-title {
+	font-size: 26px;
+	color: #333;
+	font-weight: 700;
+}
+
+.button-area {
+	margin-top: 50px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.button-wrapper {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+}
+
+.goList {
+	outline: none;
+    border: none;
+    margin-left: 15px;
+    padding-bottom: 2px;
+    width: 130px;
+    height: 50px;
+    background-color: #7BDAD0;
+    color: white;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#title-edit {
+	width: 100%;
+    height: 70px;       /* 원래 div 높이와 동일 */
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.post-title-wrapper {
+	position: relative;
+	height: 70px;
+}
+
+.post-cont-wrapper {
+	position: relative;
+	height: 100%;
+	padding-bottom: 60px;
+	min-height: 500px;
+}
+
+.post-cont-wrapper img {
+	max-width: 300px;
+	margin-top: 18px;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+    overflow-y: auto;
+}
+
+.comment-area input{
+	font-size: 16px;
+	width: 90%;
+	height: 30px;
+	margin-bottom: 10px;
+}
+
+.comment-item {
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+.comment-check {
+	margin-right: 50px;
+}
+
+.comment-user {
+	font-weight: 700;
+	margin-bottom: 5px;
+}
+
+.comment-date {
+	color: #C8C9CA;
+	margin-bottom: 10px;
+}
+
+.comment-item:not(:last-child) {
+    border-bottom: 1px solid #C8C9CA; 
+}
+
+
+#commentBt {
+	display: inline-block;
+    background-color: #fff;      
+    color: #717171;                 
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid #717171;
+    border-radius: 10px;
+    width: 60px;
+    height: 38px;
+    margin-left: 20px;
+}
+
+.button-area form {
+	display: contents;
+}
+
+.editBt, .deleteBt, .cancelBt {
+	display: inline-block;
+    background-color: #fff;      
+    color: #333;                 
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.saveBt {
+	outline: none;
+    border: none;
+    margin-left: 15px;
+    padding-bottom: 2px;
+    width: 70px;
+    height: 50px;
+    background-color: #7BDAD0;
+    color: white;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button-area button {
+	display: none;
+}
+
+.activeBt {
+	display: block !important;
+}
+
+.likeBt {
+	display: inline-block;
+    background-color: #fff;      
+    color: #7BDAD0;                 
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #7BDAD0;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    margin-right: 10px;
+    width: 120px;
+    height: 50px;
+}
+
+.comment-edit {
+	position: absolute;
+	top: 22px;
+	left: 0;
+	box-sizing: border-box;
+	display: none;
+	color: #717171;
+}
+
+.comment-item input {
+	width: 80%;
+}
+
+.commentBt {
+	display: none;
+}
+
+.activeCBt {
+	display: inline-block !important;
+}

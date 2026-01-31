@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post detail</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/detail.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}" />
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/detail.js}"></script>
+<body>
+    <header>
+        <div class="logo-section">
+            <img src="/images/studylogo.png" th:onclick="|location.href='@{/show/Main}'|">
+        </div>
+        <div class="button-section">
+            <div th:if="${#authentication.principal == null or #authentication.principal == 'anonymousUser'}" id="anonymous">
+            	<span id="sign-up"><a th:href="@{/user/signUp}">회원가입</a></span>
+            	<span id="log-in"><a th:href="@{/user/login}">로그인</a></span>
+            </div>
+            
+            <div th:if="${#authentication.principal != null and #authentication.principal != 'anonymousUser'}" id="user">
+            	<span><a th:href="@{/member/mypage}">마이페이지</a></span>
+            	<form class="logout" th:action="@{/member/logout}" method="post">
+            		<button type="submit" id="logoutBt">로그아웃</button>
+            	</form>
+            </div>
+        </div>
+	</header>
+	
+	<script th:if="${errorMessage != null}" th:inline="javascript">
+    alert(/*[[${errorMessage}]]*/'');
+	</script>
+
+    <main>
+        <div class="go-prev" th:onclick="|location.href='@{/user/showList}'|">
+            &#171;
+        </div>
+        <div class="post-detail">
+        	<div class="post-title-wrapper">
+        		<div id="title-view" class="post-title" th:text="${post.postTitle}"></div>
+        		<input type="text" id="title-edit" class="post-title" th:value="${post.postTitle}">
+        	</div>
+            <div class="writer-info">
+            	<div class="post-writer" th:text="${post.member.memberNickname}"></div>
+                <div class="separate">|</div>
+                <div class="post-date" th:text="${#temporals.format(post.postDate, 'yyyy-MM-dd')}"></div>
+                <div class="separate">|</div>
+                <span>조회수</span><div class="post-view" th:text="${post.postView}"></div>
+            </div>
+                
+            <hr>
+                
+            <div class="post-info">
+                <ul class="info-list">
+                	<li class="category">
+                		<span class="li-title">모집 구분</span>
+                		<span class="li-cont" th:text="${post.postCategory}"></span>          		
+                	</li>
+                	<li class="proceed">
+                		<span class="li-title">진행 방식</span>
+                		<span class="li-cont" th:text="${post.postProceed}"></span>
+                	</li>
+                	<li class="due-date">
+                		<span class="li-title">마감 기한</span>
+                		<span class="li-cont" th:text="${post.postDue}"></span>
+                	</li>
+                	<li class="recruitment">
+                		<span class="li-title">모집 인원</span>
+                		<span id="recruitment-view" class="li-cont" th:text="${post.recruitment}"></span>
+                		<select id="recruitment-edit" name="recruitment-edit" class="li-cont">
+                                <option value="미정" th:selected="${post.recruitment == '미정'}">미정</option>
+                                <option value="1명" th:selected="${post.recruitment == '1명'}">1명</option>
+                                <option value="2명" th:selected="${post.recruitment == '2명'}">2명</option>
+                                <option value="3명" th:selected="${post.recruitment == '3명'}">3명</option>
+                                <option value="4명" th:selected="${post.recruitment == '4명'}">4명</option>
+                                <option value="5명" th:selected="${post.recruitment == '5명'}">5명</option>
+                                <option value="5명이상" th:selected="${post.recruitment == '5명이상'}">5명이상</option>
+                        </select>
+                	</li>
+                	<li class="position">
+                		<span class="li-title">모집 포지션</span>
+                		<span id="position-view" class="li-cont" th:text="${post.position}"></span>
+                        	<div id="position-edit" class="li-cont">
+                        		<label><input type="checkbox" name="position-edit" value="프론트엔드">프론트엔드</label>
+                        		<label><input type="checkbox" name="position-edit" value="백엔드">백엔드</label>
+                        		<label><input type="checkbox" name="position-edit" value="디자이너">디자이너</label>
+                        		<label><input type="checkbox" name="position-edit" value="기획자">기획자</label>
+                        	</div>
+                	</li>
+                	<li class="period">
+                		<span class="li-title">진행 기간</span>
+                		<span class="li-cont" th:text="${post.postPeriod}"></span>
+                	</li>
+                </ul>
+            </div>
+                
+            <div class="cont-area">
+                <div class="cont-title">프로젝트 소개</div>
+                <hr>
+                <div class="post-cont-wrapper">
+                	<div th:if="${file != null}">
+                		<img th:src="${file.filePath}" alt="첨부이미지">
+                	</div>
+                	<div id="cont-view" class="post-cont" th:text="${post.postText}"></div>
+                	<textarea id="cont-edit" class="post-cont" th:text="${post.postText}"></textarea>    
+                </div> 
+            </div>
+                
+            <hr>
+            
+            <div class="comment-area">
+            	<div sec:authorize="isAuthenticated()">
+            		<form class="comment-form" th:action="@{/member/submitComment}" method="post">
+            			<input type="hidden" id="postNo" name="postNo" th:value="${post.postNo}">
+            			<input type="text" id="commentText" name="commentText" placeholder="댓글을 작성하세요">
+           	 			<button type="submit" id="commentBt">등록</button>
+          			</form>
+            	</div>
+           
+            	<div sec:authorize="!isAuthenticated()">
+            		<p>댓글을 작성하려면 <a th:href="@{/user/login}">로그인</a>이 필요합니다.</p>
+            	</div>
+            	
+            	<div class="comment-item" th:each="comment: ${comments}" th:id="'comment-' + ${comment.commentId}">
+            		<div class="comment-flex">
+            			<input type="hidden" class="comment-id" th:value="${comment.commentId}">
+            			<div class="comment-user" th:text="${comment.memberNickname}"></div>
+            			<div class="comment-cont" th:text="${comment.commentText}"></div>
+            			<input type="text" class="comment-edit" th:value="${comment.commentText}">
+            			<div class="comment-date" th:text="${#temporals.format(comment.commentDate, 'yyyy.MM.dd HH:mm')}"></div>
+            		</div>
+            		<div class="comment-check" th:if="${#authentication.principal != null and #authentication.principal != 'anonymousUser' 
+            		and #authentication.principal.member.memberNo == comment.memberNo}">
+            			<button type="button" class="commentBt activeCBt commentEditBt" onclick="commentEdit(this)">수정</button>
+            			<button type="button" class="commentBt activeCBt commentDeleteBt" onclick="commentDelete(this)">삭제</button>
+            			<button type="button" class="commentBt commentSaveEdit" onclick="commentSaveEdit(this)">저장</button>
+            		</div>
+            	</div>
+            </div>
+            
+            
+            
+            
+            <div class="button-area">
+            	<div sec:authorize="isAuthenticated()">
+            		<div class="button-wrapper" th:if="${post.member.memberNo == #authentication.principal.member.memberNo}">	
+            			<button type="button" class="editBt activeBt" onclick="showEdit()">수정</button>
+               			<form class="delete-form" th:action="@{/member/deletePost/{id}(id=${post.postNo})}" method="post">
+               				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                			<button type="submit" class="deleteBt activeBt">삭제</button>
+                		</form>
+            		</div>
+            	</div>
+            	 
+            	<div th:if="${#authentication.principal != null and #authentication.principal != 'anonymousUser' 
+            	and #authentication.principal.member.memberNo != post.member.memberNo}">
+            		<button type="button" id="likeBt" class="likeBt activeBt" 
+            			th:classappend="${isBookmarked} ? 'liked' : ''"
+            			th:text="${isBookmarked} ? '북마크해제' : '북마크'">북마크</button>
+            	</div>
+            	
+                <button type="button" class="goList activeBt" th:onclick="|location.href='@{/user/showList}'|">목록으로</button>
+
+                <button type="button" class="cancelBt" onclick="cancelEdit()">취소</button>
+                <button type="button" class="saveBt" onclick="submitEdit()">저장</button>
+            </div>
+                
+        </div>
+                
+    </main>
+    
+    <footer>
+        <div class="footer-area">
+            <div class="introduce">
+                <h4>스.구.사</h4>
+                <p>스터디가 하고 싶은 당신을 위한 플랫폼</p>
+            </div>
+            <p>
+                <span>create by 신수빈 <a>GitHub</a></span><br>
+                <span>이메일 : shinsoobin2@gmail.com</span><br>
+                <span>© 2025 신수빈. 개인 포트폴리오용 프로젝트입니다.</span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

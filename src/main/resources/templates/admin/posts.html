@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="posts-cont" th:fragment="content">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+	
+		<div class="search-area">
+			<div class="search-bar">
+				<div class="search-img"><img src="/images/search.png"></div>
+            	<div class="search-ment"><input type="text" id="searchWord" placeholder="스터디를 검색해보세요."/></div>
+			</div>
+			<button id="searchBt">검색</button>
+		</div>
+		
+		
+		<div id="posts-cont-wrapper">
+			<table id="posts-table">
+				<colgroup>
+					<col class="col-postNo">
+					<col class="col-category">
+					<col class="col-title">
+					<col class="col-author">
+					<col class="col-view">
+					<col class="col-commentCnt">
+					<col class="col-date">
+					<col class="col-status">
+					<col class="col-manage">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>글 번호</th>
+						<th>카테고리</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>조회수</th>
+						<th>댓글수</th>
+						<th>작성일</th>
+						<th>상태</th>
+						<th>관리</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="post : ${posts}">
+						<td th:text="${post.postNo}"></td>
+						<td th:text="${post.postCategory}"></td>
+						<td class="col-title-cell" >
+							<span class="title-ellipsis" th:text="${post.postTitle}"></span>
+						</td>
+						<td th:text="${post.memberNickname}"></td>
+						<td th:text="${post.postView}"></td>
+						<td th:text="${post.commentCnt}"></td>
+						<td th:text="${#temporals.format(post.postDate, 'yyyy-MM-dd')}"></td>
+						<td th:text="${post.postStatus.name() == 'ACTIVE'  ? '게시중' : '삭제됨'}"></td>
+						<td class="management" th:attr="data-id=${post.postNo}">
+							<span class="post-detail">상세</span>
+							<span>&nbsp;|&nbsp;</span>
+							<span class="post-delete" th:if="${post.postStatus?.name() == 'ACTIVE'}">삭제</span>
+							<span class="post-restore" th:if="${post.postStatus?.name() == 'DELETED'}">복구</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="pagination">
+          	<button th:if="${currentGroupStart > 0}" th:onclick="'loadMemberPage(\'posts\', ' + (currentGroupStart - 1) + ')'">
+          		Prev
+          	</button>
+          	<span th:each="i : ${#numbers.sequence(currentGroupStart, currentGroupEnd)}">
+          		<button th:classappend="${i} == ${currentPage} ? ' active'" 
+          				th:onclick="|loadMemberPage('posts',${i})|" th:text="${i + 1}"></button>
+          	</span>
+          	<button th:if="${currentGroupEnd < totPages - 1}" th:onclick="'loadMemberPage(\'posts\', ' + (currentGroupEnd + 1) + ')'" >
+          		Next
+          	</button>
+          </div>
+	</div>
+</body>
+</html>

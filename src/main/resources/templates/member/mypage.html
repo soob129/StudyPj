@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/mypage.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}" />
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/mypage.js}"></script>
+<body>
+    <header>
+        <div class="logo-section">
+            <img src="/images/studylogo.png" th:onclick="|location.href='@{/show/Main}'|">
+        </div>
+        <div class="button-section">
+            <div th:if="${#authentication.principal == null or #authentication.principal == 'anonymousUser'}" id="anonymous">
+            	<span id="sign-up"><a th:href="@{/user/signUp}">회원가입</a></span>
+            	<span id="log-in"><a th:href="@{/user/login}">로그인</a></span>
+            </div>
+            
+            <div th:if="${#authentication.principal != null and #authentication.principal != 'anonymousUser'}" id="user">
+            	<span><a th:href="@{/member/mypage}">마이페이지</a></span>
+            	<form class="logout" th:action="@{/member/logout}" method="post">
+            		<button type="submit" id="logoutBt">로그아웃</button>
+            	</form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="summary-area">
+            <div class="summary-cont-area">
+                <div class="summary-cont-title">마이페이지</div>
+                <div class="cont-wrapper1">
+                    <div class="user-info">
+                        <span class="userName" th:text="${mypage.nickname}">닉네임</span>
+                        <button>정보 관리</button>
+                    </div>
+                    <div class="cont-wrapper2">
+                        <div class="summary-cont myPost">
+                            <p class="cntTitle">내가 쓴 글 수</p>
+                            <p class="cnt" th:text="${mypage.postCnt}"></p>
+                        </div>
+                        <div class="summary-cont myComment">
+                            <p class="cntTitle">내가 쓴 댓글 수</p>
+                            <p class="cnt" th:text="${mypage.commentCnt}"></p>
+                        </div>
+                        <div class="summary-cont myLike">
+                            <p class="cntTitle">내 관심글 수</p>
+                            <p class="cnt" th:text="${mypage.likeCnt}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="content-container">
+            <div class="menu-area">
+                <ul class="menu-list">
+                    <li class="menu-item active"><a href="#" class="tab-link" data-tab="posts">내가 쓴 글</a></li>
+                    <li class="menu-item"><a href="#" class="tab-link" data-tab="comments">내가 쓴 댓글</a></li>
+                    <li class="menu-item"><a href="#" class="tab-link" data-tab="likes">내 관심글</a></li>
+                </ul>
+    
+            </div>
+            <div class="select-cont-area">
+            	
+                <!-- 이 안을 ajax로 탭 별로 불러옴 -->
+                <div id="tab-content"></div>
+                
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-area">
+            <div class="introduce">
+                <h4>스.구.사</h4>
+                <p>스터디가 하고 싶은 당신을 위한 플랫폼</p>
+            </div>
+            <p>
+                <span>create by 신수빈 <a>GitHub</a></span><br>
+                <span>이메일 : shinsoobin2@gmail.com</span><br>
+                <span>© 2025 신수빈. 개인 포트폴리오용 프로젝트입니다.</span>
+            </p>
+        </div>
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="member-cont" th:fragment="content">
+		<table class="member-table">
+			<caption></caption>
+            <colgroup>
+            	<col>
+            	<col style="width: 92px;">
+            </colgroup>
+            <thead>
+            	<tr>
+            		<th scope="col" colspan="2">댓글</th>
+            	</tr>
+            </thead>
+            <tbody>
+            	<tr th:each="comment : ${comments}">
+            		<td class="td-title" colspan="2">
+            			<div class="check-box only-box">
+            				<input type="checkbox" class="board-check">
+            			</div>
+            			<div class="comment-area" th:onclick="|location.href='@{/user/postDetail(postNo=${comment.postNo})}'|">
+            				<input type="hidden" class="comment-id" th:value="${comment.commentId}">
+            				<div class="comment-text" th:text="${comment.commentText}"></div>
+            				<div class="comment-date" th:text="${#temporals.format(comment.commentDate, 'yyyy.MM.dd HH:mm')}"></div>
+            				<div class="comment-title" th:text="${comment.postTitle}"></div>
+            			</div>
+            		</td>
+            	</tr>
+            </tbody>
+          </table>
+          
+          <div class="pagination">
+          	<button th:if="${currentGroupStart > 0}" th:onclick="'loadTab(\'comments\', ' + (currentGroupStart - 1) + ')'">
+          		Prev
+          	</button>
+          	<span th:each="i : ${#numbers.sequence(currentGroupStart, currentGroupEnd)}">
+          		<button th:classappend="${i} == ${currentPage} ? ' active'" 
+          				th:onclick="'loadTab(\'comments\', ' + ${i} + ')'" th:text="${i + 1}"></button>
+          	</span>
+          	<button th:if="${currentGroupEnd < totPages - 1}" th:onclick="'loadTab(\'comments\', ' + ${currentGroupEnd + 1} + ')'" >
+          		Next
+          	</button>
+          </div>
+          
+          <div class="button-area">
+          	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+          	<button type="button" class="deleteBt" onclick="deleteComments()">삭제</button>
+          </div>
+	</div>
+
+</body>
+</html>

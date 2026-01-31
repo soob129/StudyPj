@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study List</title>
+    
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/list.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}" />
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/list.js}"></script>
+<body>
+    <header>
+        <div class="logo-section">
+            <img src="/images/studylogo.png" th:onclick="|location.href='@{/show/Main}'|">
+        </div>
+        <div class="button-section">
+            <div th:if="${#authentication.principal == null or #authentication.principal == 'anonymousUser'}" id="anonymous">
+            	<span id="sign-up"><a th:href="@{/user/signUp}">회원가입</a></span>
+            	<span id="log-in"><a th:href="@{/user/login}">로그인</a></span>
+            </div>
+            
+            <div th:if="${#authentication.principal != null and #authentication.principal != 'anonymousUser'}" id="user">
+            	<span><a th:href="@{/member/mypage}">마이페이지</a></span>
+            	<form class="logout" th:action="@{/member/logout}" method="post">
+            		<button type="submit" id="logoutBt">로그아웃</button>
+            	</form>
+            </div>
+        </div>
+	</header>
+
+    <main>
+    	<div class=button-area>
+    		<button type="button" class="goRecruit" th:onclick="|location.href='@{/member/recruit}'|">팀원 모집하기</button>
+    	</div>
+    	
+        <div class="recommend-area">
+            <p>&#128293; 이번 주에 가장 많이 본 공고글</p>
+            <div class="content-area">
+                <div class="content-item" th:each="post : ${bestPosts}" th:onclick="|location.href='@{/user/postDetail(postNo=${post.postNo})}'|">
+                    <div class="category" th:text="${post.postCategory}"></div>
+                    <div class="closing-date">
+						<span>마감일 | </span><span th:text="${post.postDue}"></span>
+					</div>
+                    <div class="title" th:text="${post.postTitle}"></div>
+                    <div class="view">
+                    	<span>조회수&nbsp;</span>
+                    	<span th:text="${post.postView}"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="list-area">
+			<div class="study-type">
+				<span class="type-cont selected">전체</span>
+				<span class="type-cont">스터디</span>
+				<span class="type-cont">프로젝트</span>
+			</div>
+			
+			<div class="search-detail">
+				<div class="filter-bar">
+					<select>
+						<option value="" selected>포지션</option>
+						<option value="allPosition">전체</option>
+						<option value="front">프론트엔드</option>
+						<option value="back">백엔드</option>
+						<option value="design">디자이너</option>
+						<option value="pm">기획자</option>
+					</select>
+					
+					<select>
+						<option value="" selected>진행방식</option>
+						<option value="allProceed">전체</option>
+						<option value="onLine">온라인</option>
+						<option value="offLine">오프라인</option>
+					</select>
+				</div>
+				<div class="search-bar">
+					<div class="search-img"><img src="/images/search.png"></div>
+                	<div class="search-ment"><input type="text" id="searchWord" placeholder="스터디를 검색해보세요."/></div>
+                	<button id="searchBt">검색</button>
+				</div>
+			</div>
+			
+			<div th:fragment="listFragment(list, currentPage, totPages, currentGroupStart, currentGroupEnd)">
+				<div id="list-cont">
+					<div class="list-item" th:each="post : ${list}" th:onclick="|location.href='@{/user/postDetail(postNo=${post.postNo})}'|" >
+						<div class="category" th:text="${post.postCategory}"></div>
+						<div class="closing-date">
+							<span>마감일 | </span><span th:text="${post.postDue}"></span>
+						</div>
+						<div class="title" th:text="${post.postTitle}"></div>
+						<hr>
+						<div class="detail">
+							<span class="writer" th:text="${post.member.memberNickname}"></span>
+							<span class="viewTot" th:text="${post.postView}"></span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="pagination">
+        			<a th:if="${currentGroupStart > 0}" th:href="@{/user/showList(page=${currentGroupStart - 1})}">&lt;</a>
+        	
+        			<span th:each="i : ${#numbers.sequence(currentGroupStart, currentGroupEnd)}">
+        				<a th:href="@{/user/showList(page=${i})}" th:text="${i + 1}" th:classappend="${i == currentPage} ? 'active'"></a>
+        			</span>
+        	
+        			<a th:if="${currentGroupEnd < totPages - 1}" th:href="@{/user/showList(page=${currentGroupEnd + 1})}">&gt;</a>
+        		</div>		
+			</div>
+        </div>
+        
+        
+    </main>
+
+    <footer>
+        <div class="footer-area">
+            <div class="introduce">
+                <h4>스.구.사</h4>
+                <p>스터디가 하고 싶은 당신을 위한 플랫폼</p>
+            </div>
+            <p>
+                <span>create by 신수빈 <a>GitHub</a></span><br>
+                <span>이메일 : shinsoobin2@gmail.com</span><br>
+                <span>© 2025 신수빈. 개인 포트폴리오용 프로젝트입니다.</span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

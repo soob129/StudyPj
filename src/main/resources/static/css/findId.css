@@ -1,0 +1,75 @@
+main{
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.form-section{
+    border-radius: 10px;
+    height: 300px;
+    width: 400px;
+    margin: 0 auto;
+    text-align: center; 
+    padding: 50px;
+    border: 2px solid rgba(128, 128, 128, 0.7);
+}
+
+.form-content{
+    width: 300px;
+    margin: 0 auto;
+}
+
+h2{
+    color: rgb(8, 8, 8);
+    margin-top: 30px;
+}
+
+.form-item {
+    display: flex;
+    align-items: center; 
+    height: 40px;
+}
+
+.form-item label{
+    display: block;
+    color: rgb(8, 8, 8);
+    margin-right: 10px;
+    width: 50px;
+    font-size: 18px;
+}
+
+.form-item input{
+    height: 25px;
+    width: 220px;
+    border: 1px solid #aaa;
+}
+
+.btn-area{
+    margin-top: 30px;
+}
+
+#findIdBt{
+    outline: none;
+    border: none;
+    /* border: 2px solid #aaa; */
+    border-radius: 10px;
+    width: 300px;
+    height: 60px;
+    background-color: #FEDF45;
+    color: #0A417A;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 50px;
+}
+
+.findPw{
+    color: rgb(8, 8, 8);
+    text-align: center;
+    font-size: 14px;
+}
+
+.findPw a{
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+}

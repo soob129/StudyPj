@@ -1,0 +1,92 @@
+main {
+    display: flex;
+    justify-content: center;   /* 수평 정렬 */
+    align-items: center;       /* 수직 정렬 */
+    border-left: 1.5px solid rgba(128, 128, 128, 0.7);
+    border-right: 1.5px solid rgba(128, 128, 128, 0.7);
+}
+
+.main-section{
+    text-align: center; 
+    padding: 40px;
+    margin: 100px 0 120px 0;
+    border: 2px solid rgba(128, 128, 128, 0.7);
+    text-align: center;   
+}
+
+.login-area{
+    margin: 0 80px 25px 80px;
+}
+
+.login-area h2{
+    color: rgb(8, 8, 8);
+}
+
+.login-area span{
+    display: block;
+    width: 80px;
+    color: rgb(8, 8, 8);
+}
+
+.login-area p{
+    display: flex;
+    margin: 10px 0 10px 0 ;
+    height: 28px;
+}
+
+#userId, #userPw{
+    outline-color: #0A417A;
+}
+
+#loginBt{
+    outline: none;
+    border: none;
+    margin: 10px 0 30px 0;
+    width: 260px;
+    height: 35px;
+    background-color: #FEDF45;
+    color: #0A417A;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bt-area{
+    display: flex;
+    gap: 8px;
+}
+.bt-area button{
+    outline: none;
+    border: none;
+    background-color: inherit ;
+    color: rgb(8, 8, 8);
+    cursor: pointer;
+}
+
+.bt-area span{
+    display: block;
+    width: 5px;
+}
+
+.main-section hr {
+    margin: 50px 30px 50px 30px;
+}
+
+.otherLogin{
+    color: rgb(8, 8, 8);
+    margin: 0 80px 50px 80px;
+}
+
+#naverLogin{
+    color: white;
+    border: white 1px solid;
+    background-color: #09AA5C;
+    border-radius: 5px;
+    width: 240px;
+    height: 45px;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}

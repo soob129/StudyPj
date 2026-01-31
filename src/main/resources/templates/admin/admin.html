@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin page</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/dashboard.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/users.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/posts.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}" />
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/admin.js}" defer></script>
+<body>
+    <header>
+        <div class="logo-section">
+            <img src="/images/studylogo.png" th:onclick="|location.href='@{/show/Main}'|">
+        </div>
+        <div class="button-section">
+            <div th:if="${#authentication.principal == null or #authentication.principal == 'anonymousUser'}" id="anonymous">
+            	<span id="sign-up"><a th:href="@{/user/signUp}">회원가입</a></span>
+            	<span id="log-in"><a th:href="@{/user/login}">로그인</a></span>
+            </div>
+            
+            <div th:if="${#authentication.principal != null and #authentication.principal != 'anonymousUser'}" id="user">
+            	<span><a th:href="@{/member/mypage}">마이페이지</a></span>
+            	<form class="logout" th:action="@{/member/logout}" method="post">
+            		<button type="submit" id="logoutBt">로그아웃</button>
+            	</form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="brand">
+            <div class="logo">></div>
+            ADMIN
+        </div>
+	
+		<div class="admin-container">
+			<nav class="admin-nav">
+            	<div class="nav-item active" data-tab="dashboard">
+                	<span class="nav-icon">📊</span><span>대시보드</span>
+            	</div>
+            	<div class="nav-item" data-tab="users">
+               		<span class="nav-icon">👥</span><span>회원 관리</span>
+            	</div>
+            	<div class="nav-item" data-tab="posts">
+                	<span class="nav-icon">🧾</span><span>스터디 관리</span>
+            	</div>
+        	</nav>
+        	<div class="admin-cont-area">
+        		<div id="tab-content"></div>
+        	</div>
+		</div>
+        
+    </main>
+
+    <footer>
+        <div class="footer-area">
+            <div class="introduce">
+                <h4>스.구.사</h4>
+                <p>스터디가 하고 싶은 당신을 위한 플랫폼</p>
+            </div>
+            <p>
+                <span>create by 신수빈 <a>GitHub</a></span><br>
+                <span>이메일 : shinsoobin2@gmail.com</span><br>
+                <span>© 2025 신수빈. 개인 포트폴리오용 프로젝트입니다.</span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

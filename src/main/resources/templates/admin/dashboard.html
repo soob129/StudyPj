@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="dashboard-cont" th:fragment="content">
+		<div id="dashboard-cont-wrapper">
+			<div class="dashboard-cont-item">
+				<div class="content-label">전체 회원 수</div>
+				<div class="content-value" th:text="${memberCnt}"></div>
+			</div>
+			
+			<div class="dashboard-cont-item">
+				<div class="content-label">전체 글 수</div>
+				<div class="content-value" th:text="${postCnt}"></div>
+			</div>
+			
+			<div class="dashboard-cont-item">
+				<div class="content-label">전체 댓글 수</div>
+				<div class="content-value" th:text="${commentCnt}"></div>
+			</div>
+		</div>
+	
+		<h3>월별 글 수</h3>
+		<canvas id="postChart" width="600" height="400"></canvas>		
+		<div id="monthlyPostsData" th:attr="data-json=${monthlyPosts}" style="display:none"></div>
+	</div>
+</body>
+</html>

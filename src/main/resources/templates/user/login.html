@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}" />
+<body>
+    <header>
+        <div class="logo-section">
+            <img src="/images/studylogo.png" th:onclick="|location.href='@{/show/Main}'|">
+        </div>
+        <div class="button-section">
+            <span id="sign-up"><a th:href="@{/user/signUp}">회원가입</a></span>
+            <span id="log-in"><a th:href="@{/user/login}">로그인</a></span>
+        </div>
+    </header>
+    
+    <main>
+    	<div th:if="${errorMessage != null}">
+    		<script th:inline="javascript">
+    			alert(/*[[${errorMessage}]]*/'');
+    		</script>
+		</div>
+        <div class="main-section">
+            <div class="login-area">
+                <h2>로그인</h2>
+                <form th:action="@{/user/checkUser}" method="post">
+                	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <p><span>아이디</span><input type="text" id="userId" name="username" placeholder="아이디를 입력하세요."></p>
+                    <p><span>비밀번호</span><input type="password" id="userPw" name="password" placeholder="비밀번호를 입력하세요."></p>
+                    <input type="submit" id="loginBt" name="loginBt" value="로그인">
+                </form>
+
+                <div class="bt-area">
+                    <button type="button" id="findId" th:onclick="|location.href='@{/user/findId}'|">아이디 찾기</button>
+                    <span> |</span>
+                    <button type="button" id="findPw" th:onclick="|location.href='@{/user/findPw}'|">비밀번호 찾기</button>
+                    <span> |</span>
+                    <button type="button" id="signupBt" th:onclick="|location.href='@{/user/signUp}'|">회원가입</button>
+                </div>
+            </div>
+            
+            <hr>
+
+            <div class="otherLogin">
+                <h3>다른 서비스 계정으로 로그인</h3>
+                <button id="naverLogin">네이버 계정으로 로그인</button>
+            </div>
+
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-area">
+            <div class="introduce">
+                <h4>스.구.사</h4>
+                <p>스터디가 하고 싶은 당신을 위한 플랫폼</p>
+            </div>
+            <p>
+                <span>create by 신수빈 <a>GitHub</a></span><br>
+                <span>이메일 : shinsoobin2@gmail.com</span><br>
+                <span>© 2025 신수빈. 개인 포트폴리오용 프로젝트입니다.</span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

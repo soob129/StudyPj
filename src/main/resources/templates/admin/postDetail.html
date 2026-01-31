@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="user-detail-cont" th:fragment="content">	
+		
+		<button id="backToPosts">뒤로</button>	
+		
+		<div class="author-info">
+			<ul class="info-list">
+				<li class="memberNo">
+					<span class="li-title">회원 번호</span>
+					<span class="li-cont" th:text="${member.memberNo}"></span>
+				</li>
+				<li class="memberId">
+					<span class="li-title">아이디</span>
+					<span class="li-cont" th:text="${member.memberId}"></span>
+				</li>
+				<li class="memberNickname">
+					<span class="li-title">닉네임</span>
+					<span class="li-cont" th:text="${member.memberNickname}"></span>
+				</li>
+				<li class="joinDate">
+					<span class="li-title">가입일</span>
+					<span class="li-cont" th:text="${member.joinDate}"></span>
+				</li>
+				<li class="member-status">
+					<span class="li-title">회원 상태</span>
+					<span class="li-cont" th:text="${member.memberStatus}"></span>
+				</li>
+			</ul>
+		</div>
+		
+		<hr>
+		
+		<div class="post-info">
+        	<ul class="info-list">
+        		<li class="category">
+                	<span class="li-title">모집 구분</span>
+                	<span class="li-cont" th:text="${post.postCategory}"></span>          		
+                </li>
+                <li class="proceed">
+                	<span class="li-title">진행 방식</span>
+                	<span class="li-cont" th:text="${post.postProceed}"></span>
+                </li>
+                <li class="due-date">
+                	<span class="li-title">마감 기한</span>
+                	<span class="li-cont" th:text="${post.postDue}"></span>
+                </li>
+                <li class="recruitment">
+                	<span class="li-title">모집 인원</span>
+                	<span class="li-cont" th:text="${post.recruitment}"></span>
+                </li>
+                <li class="period">
+                	<span class="li-title">진행 기간</span>
+                	<span class="li-cont" th:text="${post.postPeriod}"></span>
+                </li>
+                <li class="position">
+                	<span class="li-title">모집 포지션</span>
+                	<span class="li-cont" th:text="${post.position}"></span>
+                </li>
+                <li class="post-status">
+                	<span class="li-title">게시글 상태</span>
+                	<span class="li-cont" th:text="${post.postStatus}"></span>
+                </li>
+              </ul>
+           </div>
+                
+            <div class="cont-area">
+                <div class="cont-title">프로젝트 소개</div>
+                <hr>
+                <div class="post-cont-wrapper">
+                	<div id="cont-view" class="post-cont" th:text="${post.postText}"></div>
+                </div> 
+            </div>
+                
+            <hr>
+            
+            <div class="comment-area">	
+            	<div class="comment-item" th:each="comment: ${comments}" th:id="'comment-' + ${comment.commentId}">
+            		<div class="comment-flex">
+            			<input type="hidden" class="comment-id" th:value="${comment.commentId}">
+            			<div class="comment-user" th:text="${comment.memberNickname}"></div>
+            			<div class="comment-cont" th:text="${comment.commentText}"></div>
+            			<div class="comment-date" th:text="${#temporals.format(comment.commentDate, 'yyyy.MM.dd HH:mm')}"></div>
+            		</div>
+            		<button type="button" class="commentDeleteBt" onclick="commentDelete(this)">삭제</button>
+            	</div>
+            </div>
+	</div>
+</body>
+</html>

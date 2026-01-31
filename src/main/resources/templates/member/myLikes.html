@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="member-cont" th:fragment="content">
+		<table class="member-table">
+			<caption></caption>
+            <colgroup>
+            	<col style="width: 320px;">
+            	<col style="width: 120px;">
+            	<col style="width: 70px;">
+            	<col style="width: 50px;">
+            </colgroup>
+            <thead>
+            	<tr>
+            		<th scope="col">제목</th>
+            		<th scope="col">작성자</th>
+            		<th scope="col">작성일</th>
+            		<th scope="col">조회</th>
+            	</tr>
+            </thead>
+            <tbody>
+            	<tr th:each="post : ${likes}">
+            		<td class="td-title">
+            			<div class="check-box only-box">
+            				<input type="checkbox" class="board-check">
+            			</div>
+            			<div class="board-main" th:onclick="|location.href='@{/user/postDetail(postNo=${post.postNo})}'|">
+            				<input type="hidden" class="like-no" th:value="${post.likeyoNo}">
+            				<div class="board-number" th:text="${post.postNo}"></div>
+            				<div class="board-title" th:text="${post.postTitle}"></div>
+            				<div class="board-cnt" th:text="'[' + ${post.commentCnt} + ']'"></div>
+            			</div>
+            		</td>
+            		<td class="td-writer" th:text="${post.memberNickname}">
+            		</td>
+            		<td class="td-date" th:text="${#temporals.format(post.postDate, 'yyyy.MM.dd')}">
+            		</td>
+            		<td class="td-view" th:text="${post.postView}">
+            		</td>
+            	</tr>
+            </tbody>
+          </table>
+          
+          <div class="pagination">
+          	<button th:if="${currentGroupStart > 0}" th:onclick="'loadTab(\'likes\', ' + (currentGroupStart - 1) + ')'">
+          		Prev
+          	</button>
+          	<span th:each="i : ${#numbers.sequence(currentGroupStart, currentGroupEnd)}">
+          		<button th:classappend="${i} == ${currentPage} ? ' active'" 
+          				th:onclick="'loadTab(\'likes\', ' + ${i} + ')'" th:text="${i + 1}"></button>
+          	</span>
+          	<button th:if="${currentGroupEnd < totPages - 1}" th:onclick="'loadTab(\'likes\', ' + ${currentGroupEnd + 1} + ')'" >
+          		Next
+          	</button>
+          </div>
+          
+          <div class="button-area">
+          	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+          	<button type="button" class="deleteBt" onclick="cancelLikes()">좋아요 취소</button>
+          </div>
+	</div>
+</body>
+</html>

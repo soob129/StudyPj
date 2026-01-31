@@ -1,0 +1,130 @@
+html{
+    background-color: #3674B5;
+}
+
+main{
+    margin: 0 auto;
+    width: 1200px;
+}
+
+hr{
+    margin-bottom: 50px;
+}
+
+.recruit-member{
+    margin-bottom: 50px;
+}
+
+.recruit-member p{
+    font-size: 55px;
+    font-weight: bold;
+    color:white;
+    margin: 20px 0;
+}
+
+#go-recruit{
+    border: 1px solid #FEDF45; 
+    background-color: #FEDF45;
+    border-radius: 10px;
+    width: 320px;
+    height: 45px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #0A417A;
+    text-align: center;
+    line-height: 45px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.recruit-member a {
+	display: block;
+	text-decoration: none;
+	color: #0A417A;
+}
+
+.search-study{
+    margin-bottom: 50px;
+}
+
+.search-area{
+    width: 70%;
+    height: 40px;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;   
+    align-items: center;
+    cursor: text;
+}
+
+.search-area div{
+    opacity: 0.5;
+}
+
+.search-area img{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.search-ment{
+    width: 90%;
+    margin-left: 10px;
+    margin-bottom: 2px;
+}
+
+input[type="text"]{
+    outline: none;
+    border: none;
+    margin-bottom: 5px;
+    width: 97%;
+}
+
+.search-enter{
+    cursor: pointer;
+}
+
+.list-area{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.study-list{
+    background-color: white;
+    width: 350px;
+    height: 320px;
+    border-radius: 15px;
+}
+
+.list-img img{
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: auto;
+}
+
+.list-category{
+    color: #422C0E;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.recommend-area{
+    margin-bottom: 50px;
+}
+
+.recommend-ment p{
+    font-size: 55px;
+    font-weight: bold;
+    color:white;
+    margin: 20px 0;
+}
+
+.recomment-list{
+    background-color: white;
+    border-radius: 15px;
+    width: 250px;
+    height: 300px;
+}

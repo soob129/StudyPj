@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>find pw</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/findPw.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}" />
+<body>
+    <header>
+        <div class="logo-section">
+            <img src="/images/studylogo.png" th:onclick="|location.href='@{/show/Main}'|">
+        </div>
+        <div class="button-section">
+            <span id="sign-up"><a th:href="@{/user/signUp}">회원가입</a></span>
+            <span id="log-in"><a th:href="@{/user/login}">로그인</a></span>
+        </div>
+    </header>
+
+    <main>
+    	<div th:if="${errorMessage != null}">
+    		<script th:inline="javascript">
+    			alert(/*[[${errorMessage}]]*/'');
+    		</script>
+		</div>
+        <div class=form-section>
+            <form class="findpw-form" th:action="@{/user/findpwForm}" method="post">
+                <div class="form-content">
+                    <div class="form-list">
+                        <h2>비밀번호 찾기</h2>
+                        <div class="form-item userId">
+                            <label for="userId">아이디</label>
+                            <input type="text" id="userId" name="userId">
+                        </div>
+
+                        <div class="form-item userName">
+                            <label for="userName">이름</label>
+                            <input type="text" id="userName" name="userName">
+                        </div>
+    
+                        <div class="form-item userEmail">
+                            <label for="userEmail">이메일</label>
+                            <input type="text" id="userEmail" name="userEmail">
+                        </div>
+                    </div>
+                    <div class="btn-area">
+                        <input type="submit" id="findPwBt" name="findPwBt" value="비밀번호 찾기">
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="other-section">
+            <div class="findId">
+                <p>아이디를 잊어버리셨나요? <a th:href="@{/user/findId}">아이디 찾기</a></p>    
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-area">
+            <div class="introduce">
+                <h4>스.구.사</h4>
+                <p>스터디가 하고 싶은 당신을 위한 플랫폼</p>
+            </div>
+            <p>
+                <span>create by 신수빈 <a>GitHub</a></span><br>
+                <span>이메일 : shinsoobin2@gmail.com</span><br>
+                <span>© 2025 신수빈. 개인 포트폴리오용 프로젝트입니다.</span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

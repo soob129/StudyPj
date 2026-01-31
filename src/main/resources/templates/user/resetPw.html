@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Pw</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/resetPw.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}" />
+<body>
+    <header>
+        <div class="logo-section">
+            <img src="/images/studylogo.png" th:onclick="|location.href='@{/show/Main}'|">
+        </div>
+        <div class="button-section">
+            <span id="sign-up"><a th:href="@{/user/signUp}">회원가입</a></span>
+            <span id="log-in"><a th:href="@{/user/login}">로그인</a></span>
+        </div>
+    </header>
+
+    <main>
+    	<div th:if="${errorMessage != null}">
+    		<script th:inline="javascript">
+    			alert(/*[[${errorMessage}]]*/'');
+    		</script>
+		</div>
+		
+        <div class="form-section">
+            <h2>비밀번호 재설정</h2>
+            <hr>
+            <form class="newPw-form" th:action="@{/user/resetPw}" method="post">
+            	<input type="hidden" id="memberId" name="memberId" th:value="${userId}">
+                <div class="form-content">
+                    <div class="form-list">
+                        <div class="form-item userPw">
+                            <label for="userPw">비밀번호</label>
+                            <input type="password" id="userPw" name="userPw">
+                        </div>
+
+                        <div class="form-item pwCheck">
+                            <label for="pwCheck">비밀번호 확인</label>
+                            <input type="password" id="pwCheck" name="pwCheck">
+                        </div>
+                    </div>
+                    <div class="btn-area">
+                        <input type="submit" id="resetBt" name="resetBt" value="비밀번호 변경">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-area">
+            <div class="introduce">
+                <h4>스.구.사</h4>
+                <p>스터디가 하고 싶은 당신을 위한 플랫폼</p>
+            </div>
+            <p>
+                <span>create by 신수빈 <a>GitHub</a></span><br>
+                <span>이메일 : shinsoobin2@gmail.com</span><br>
+                <span>© 2025 신수빈. 개인 포트폴리오용 프로젝트입니다.</span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

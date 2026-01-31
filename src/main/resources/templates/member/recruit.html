@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>recruit site</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/recruit.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}" />
+<body>
+    <header>
+        <div class="logo-section">
+            <img src="/images/studylogo.png" th:onclick="|location.href='@{/show/Main}'|">
+        </div>
+        <div class="button-section">
+            <div th:if="${#authentication.principal == null or #authentication.principal == 'anonymousUser'}" id="anonymous">
+            	<span id="sign-up"><a th:href="@{/user/signUp}">회원가입</a></span>
+            	<span id="log-in"><a th:href="@{/user/login}">로그인</a></span>
+            </div>
+            
+            <div th:if="${#authentication.principal != null and #authentication.principal != 'anonymousUser'}" id="user">
+            	<span><a th:href="@{/member/mypage}">마이페이지</a></span>
+            	<form class="logout" th:action="@{/member/logout}" method="post">
+            		<button type="submit" id="logoutBt">로그아웃</button>
+            	</form>
+            </div>
+        </div>
+    </header>
+
+<script th:if="${errorMessage != null}" th:inline="javascript">
+    alert(/*[[${errorMessage}]]*/'');
+</script>
+
+    <main>
+        <div class="form-section">
+            <div class="section-title">스터디 기본 정보</div>
+            <form class="recruit-form" th:action="@{/member/recruitForm}" method="post" enctype="multipart/form-data">
+                <div class="form-content">
+                    <div class="form-list"> 
+                        <div class="form-item title">
+                            <select name="category">
+                                <option value="스터디">스터디</option>
+                                <option value="프로젝트">프로젝트</option>
+                            </select>
+                            <input type="text" id="title" name="title" maxlength="30">         
+                        </div>
+                        
+                        <div class="form-item proceed">
+                       		<span>진행 방식&nbsp;&nbsp;|</span>
+                        	<select name="proceed">
+                                <option value="온라인">온라인</option>
+                                <option value="오프라인">오프라인</option>
+                                <option value="온/오프라인">온/오프라인</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-item recruitment">
+                        	<span>모집 인원&nbsp;&nbsp;|</span>
+                        	<select name="recruitment">
+                                <option value="미정">미정</option>
+                                <option value="1명">1명</option>
+                                <option value="2명">2명</option>
+                                <option value="3명">3명</option>
+                                <option value="4명">4명</option>
+                                <option value="5명">5명</option>
+                                <option value="5명이상">5명이상</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-item period">
+                        	<span>진행 기간&nbsp;&nbsp;|</span>
+                        	<select name="period">
+                                <option value="기간미정">기간미정</option>
+                                <option value="1개월">1개월</option>
+                                <option value="2개월">2개월</option>
+                                <option value="3개월">3개월</option>
+                                <option value="4개월">4개월</option>
+                                <option value="5개월">5개월</option>
+                                <option value="6개월">6개월</option>
+                                <option value="6개월이상">6개월이상</option>
+                            </select>
+                        </div>
+             
+
+                        <div class="form-item position">
+                        	<span>모집 포지션&nbsp;&nbsp;|</span>
+                        	<label><input type="checkbox" name="position" value="프론트엔드">프론트엔드</label>
+                        	<label><input type="checkbox" name="position" value="백엔드">백엔드</label>
+                        	<label><input type="checkbox" name="position" value="디자이너">디자이너</label>
+                        	<label><input type="checkbox" name="position" value="기획자">기획자</label>
+                        </div>
+                         
+                        <div class="form-item file-upload">
+                            <span>파일 첨부&nbsp;&nbsp;|</span>
+                            <input type="file" class="attachment" id="attachment" name="attachment">
+                        </div>
+
+                        <div class="form-item date">
+                            <span>마감 기한&nbsp;&nbsp;|</span>
+                            <input type="date" class="closing-date" id="closing-date" name="dueDate">
+                        </div>
+                        
+                        <hr>
+                        <div class="section-title">스터디 소개</div>
+
+                        <div class="form-item2 editor">
+                            <div class="form-text">
+                                <textarea name="content" placeholder="내용을 입력해 주세요."></textarea>       
+                            </div>
+                        </div>	
+                        <div class="button-area">
+                        	<button type="submit" id="submitBt">작성</button>
+               				<button type="button" class="goList" id="goList" th:onclick="|location.href='@{/user/showList}'|">목록으로</button>
+            			</div>
+                    </div>
+                </div>
+                
+            </form>
+            
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-area">
+            <div class="introduce">
+                <h4>스.구.사</h4>
+                <p>스터디가 하고 싶은 당신을 위한 플랫폼</p>
+            </div>
+            <p>
+                <span>create by 신수빈 <a>GitHub</a></span><br>
+                <span>이메일 : shinsoobin2@gmail.com</span><br>
+                <span>© 2025 신수빈. 개인 포트폴리오용 프로젝트입니다.</span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

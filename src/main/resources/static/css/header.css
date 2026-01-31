@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+}
+
+header{
+    width: 100%;
+    background-color: #3674B5;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-section {
+    margin-left: 100px;
+    height: 170px;
+}
+
+.logo-section img {
+    cursor: pointer;
+    height: 170px;
+}
+
+.button-section span{ 
+    color: white;
+    margin-left: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.button-section span a {
+	color: white;
+	cursor: pointer;
+	text-decoration-line: none;
+}
+
+#log-in{
+    border: 3px solid #7BDAD0;
+    background-color: #7BDAD0;
+    border-radius: 10px;
+    padding: 0 10px 1px 10px;
+    color: white;
+    margin-right: 100px;
+}
+
+#user {
+	display: flex;
+	align-items: center;
+}
+
+#logoutBt{
+	margin-left: 30px;
+	outline: none;
+    border-radius: 10px;
+    border: 3px solid #7BDAD0;
+    background-color: #7BDAD0;
+    padding: 5px 10px 3px 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 18px;
+    margin-right: 100px;
+}

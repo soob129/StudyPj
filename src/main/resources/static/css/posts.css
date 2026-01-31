@@ -1,0 +1,139 @@
+main{
+    margin: 0 auto;
+    width: 1200px;
+}
+
+#posts-cont-wrapper {
+	max-width: 100%;
+	overflow-x: auto;
+}
+
+.post-detail, .post-delete, .post-restore {
+	cursor: pointer;
+}
+
+.pagination {
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+.pagination button {
+	border: none;
+	background-color : white;
+	outline: none;
+	font-size: 15px;
+	color: #555555;
+}
+
+.active {
+	border-bottom: 2px solid #717171 !important;
+	color: black !important;
+	font-weight: bold;
+}
+
+#posts-table {
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	table-layout: fixed;
+	text-align: center;
+}
+
+#posts-table tr, #posts-table th, #posts-table td{
+	height: 40px;
+	border: 1px solid #ddd;
+}
+
+
+.col-postNo {	width: 100px; }
+.col-category { width: 150px; }
+.col-title { width: 250px; min-width: 0;}
+.col-author { width: 100px; }
+.col-view { width: 90px; }
+.col-commentCnt { width: 90px; }
+.col-date { width: 150px; }
+.col-status { width: 120px; }
+.col-manage { width: 200px; }
+
+.title-ellipsis {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#backToPosts {
+	width: 60px;
+	height: 40px;
+	margin-bottom: 40px;
+    cursor: pointer;
+}
+
+hr {
+	border: none;
+	background-color: #F2F2F2;
+	height: 4px;
+	margin-top: 30px;
+	margin-bottom: 50px;
+	
+}
+
+.info-list {
+	display: grid;
+	grid-template-columns: repeat(2, 3fr);
+	row-gap: 24px;
+}
+
+.info-list li {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	list-style: none;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.li-title {
+	width: 120px;
+	color: #717171;
+	margin-right: 36px;
+}
+
+.li-cont {
+	color: #333;
+}
+
+.cont-area{
+	margin-top: 130px;
+
+}
+
+.cont-title {
+	font-size: 26px;
+	color: #333;
+	font-weight: 700;
+}
+
+.comment-item {
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+.comment-user {
+	font-weight: 700;
+	margin-bottom: 5px;
+}
+
+.comment-date {
+	color: #C8C9CA;
+	margin-bottom: 10px;
+}
+
+.comment-item:not(:last-child) {
+    border-bottom: 1px solid #C8C9CA; 
+}
+

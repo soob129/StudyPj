@@ -1,0 +1,125 @@
+main{
+    margin: 0 auto;
+    width: 1200px;
+}
+
+.form-section {
+    width: 900px;
+    padding: 10px 20px 20px 20px;
+    margin: 60px auto;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 10px;
+}
+
+.section-title {
+	margin-top: 20px;
+	font-size: 36px;
+    font-weight: 700;
+    height: 70px;
+    color: #333;
+}
+
+.title{
+    height: 45px;
+}
+
+#title {
+    width: 450px;
+    height: 40px;
+    border: 1px solid rgba(128, 128, 128, 0.7);
+    border-radius: 3px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: #717171;
+}
+
+.file-upload {
+    margin-bottom: 20px;
+}
+
+.form-item span{
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.form-item select{
+	height: 40px;
+	color: #717171;
+	font-size: 16px;
+}
+
+.form-item input {
+	font-size: 16px;
+}
+
+.form-item {
+	margin-bottom: 20px;
+	height: 40px;
+}
+
+.position label {
+	margin-right: 5px;
+}
+
+.editor {
+    padding: 20px;
+    border: 1px solid rgba(128, 128, 128, 0.7);
+    border-radius: 5px;
+}
+
+.form-text {
+    height: 800px;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 18px;
+}
+
+.button-area{
+    margin-top: 20px;
+    text-align: center;
+}
+
+#submitBt {
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    margin-right: 20px;
+    padding-bottom: 2px;
+    width: 80px;
+    height: 40px;
+    background-color: #02B898;
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#goList {
+    outline:none;
+    border: none;
+    padding-bottom: 2px;
+    width: 80px;
+    height: 40px;
+    background-color: gray;
+    color: white;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+hr {
+	border: none;
+	background-color: #F2F2F2;
+	height: 4px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	
+}

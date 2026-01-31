@@ -1,0 +1,29 @@
+main{
+    margin: 0 auto;
+    width: 1200px;
+}
+
+#dashboard-cont-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.dashboard-cont-item {
+	width: 200px;
+	height: 100px;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.content-label {
+	margin-top: 17px;
+	font-size: 16px;
+}
+
+.content-value {
+	margin-top: 5px;
+	font-size: 20px;
+	font-weight: 700;
+}
